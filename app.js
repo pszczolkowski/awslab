@@ -1,11 +1,11 @@
-var lab1_1 = require("./lab/lab1_1").lab
+var lab1_1 = require("./lab/lab1_1").lab;
 var example_1 = require("./example_1").lab;
 var lab2 = require("./lab/lab2").lab;
-var AWS = require('awssdk');
+var AWS = require('aws-sdk');
 
 var PORT = 8080;
 
-AWS.config.loadFromPath('./config.json');
+AWS.config.loadFromPath('./config.json');
 
 var urlMap = [
 	{path: "/", action:__dirname + "/static/index.html"},	 
