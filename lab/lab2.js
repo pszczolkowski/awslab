@@ -16,9 +16,10 @@ function info(request, callback) {
 	
 	ec2.describeInstances(params, function(err, data) {
 		if (err) {
-			console.log(err);
 			callback(err); 
-		}// an error occurred err.stack
-		else     callback(data);           // successful response
+		}
+		else {
+			callback(null, data);
+		}
 	});
 }
