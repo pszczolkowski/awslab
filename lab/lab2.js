@@ -15,7 +15,10 @@ function info(request, callback) {
 	};
 	
 	ec2.describeInstances(params, function(err, data) {
-		if (err) callback(err); // an error occurred err.stack
+		if (err) {
+			callback(err); 
+			console.log(err);
+		}// an error occurred err.stack
 		else     callback(data);           // successful response
 	});
 }
