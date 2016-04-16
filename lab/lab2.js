@@ -6,6 +6,9 @@ module.exports = {
 };
 
 
+var AMI_IMAGE_ID = 'ami-80f715e0';
+
+
 AWS.config.loadFromPath('./config.json');
 var ec2 = new AWS.EC2();
 
@@ -27,7 +30,7 @@ function info(request, callback) {
 
 function runInstance(request, callback) {
 	var params = {
-		ImageId: 'ami-80f715e0',
+		ImageId: AMI_IMAGE_ID,
 		MaxCount: 1,
 		MinCount: 1,
 		Monitoring: {
@@ -49,7 +52,11 @@ function runInstance(request, callback) {
 					callback(err); 
 				}
 				else {
-					callback(null, "DNS: " + data.Reservations[0].Instances[0].PublicDnsName + "<br />" + "IP: " + data.Reservations[0].Instances[0].PublicIpAddress);
+					var createdInstance = data.Reservations[0].Instances[0];
+					var response = 'DNS: ' + createdInstance.PublicDnsName +
+						'<br />IP: ' + createdInstance.PublicIpAddress;
+
+					callback(null, response);
 				}
 			});
 		
