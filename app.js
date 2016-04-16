@@ -1,6 +1,7 @@
-var lab1_1 = require("./lab/lab1_1").lab;
-var example_1 = require("./example_1").lab;
-var lab2 = require("./lab/lab2");
+var example_1 = require("./example_1").lab,
+	lab1_1 = require("./lab/lab1_1").lab,
+	lab2 = require("./lab/lab2"),
+	service = require("./lib/service");
 
 var PORT = 8080;
 
@@ -12,7 +13,6 @@ var urlMap = [
 	{path: "/run-instance", action: lab2.runInstance}
 	];
 
-var service = require("./lib/service").http(urlMap);
-
-service(PORT);
+var httpService = service.http(urlMap);
+httpService(PORT);
 
